@@ -1,0 +1,18 @@
+# Personal credentials — never commit
+env.local
+
+# Local ticket work — stays on your machine
+tickets/*
+!tickets/.gitkeep
+
+# Local ad-hoc analyses — stays on your machine
+adhoc/*
+!adhoc/.gitkeep
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo

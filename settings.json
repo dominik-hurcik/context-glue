@@ -1,0 +1,36 @@
+{
+  "_version": "1.0.0",
+  "_docs": "See README.md for full field reference.",
+
+  "workspace": {
+    "name": "",
+    "repos": [],
+    "setup_complete": false
+  },
+
+  "git": {
+    "enable_sync": true,
+    "enable_commits": false,
+    "commit_strategy": "never",
+    "commit_message_format": "knowledge({ticket}): {task_summary}"
+  },
+
+  "workflow": {
+    "auto_update_checklist": true,
+    "auto_update_context": true,
+    "auto_update_pullrequest": true,
+    "require_confirm_before_mutations": true,
+    "summarize_on_session_end": true
+  },
+
+  "investigation": {
+    "max_queries_per_session": 50,
+    "always_require_limit": true,
+    "default_limit": 100
+  },
+
+  "agent": {
+    "default_identity": "CLAUDE",
+    "verbose_context_loading": false
+  }
+}
