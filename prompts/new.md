@@ -8,7 +8,7 @@
 
 3. Based on the task description, load the relevant knowledge rooms before doing any work.
 
-4. Create `context-glue/tickets/{TICKET}/.agent/` with four living files:
+4. Create `context-glue/tickets/{TICKET}/.agent/` with five living files:
 
    **CONTEXT.md** — the living record of this ticket. What was decided, why, and how pieces fit together. Start with a brief summary of the task and update continuously as work progresses.
    ```markdown
@@ -56,6 +56,17 @@
    <!-- How it was tested -->
    ```
 
-5. All four files are alive — update them as work progresses, not just at the end.
+   **PROMOTE_CANDIDATES.md** — real-time log of findings worth promoting to shared knowledge. The agent appends to this file the moment a non-obvious discovery is made — do not wait until the end of the session.
+   ```markdown
+   # {TICKET} — Promote Candidates
 
-6. Never use git commands. The user handles all git operations.
+   <!-- Agent appends one line per non-obvious discovery during the session. -->
+   <!-- Format: - [target room tag] Brief statement of the finding. -->
+   <!-- Example: - [backend] Retrying a failed job without clearing its lock causes silent duplicate processing. -->
+   ```
+
+5. All five files are alive — update them as work progresses, not just at the end.
+
+6. **PROMOTE_CANDIDATES.md must be updated in real time.** Whenever a non-obvious discovery is made — a gotcha, a confirmed behavior, a corrected assumption, a useful pattern — append a one-line entry immediately. Format: `- [target room tag] Brief statement of the finding.` Do not batch these to the end of the session.
+
+7. Never use git commands. The user handles all git operations.

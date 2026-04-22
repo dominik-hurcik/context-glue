@@ -22,11 +22,15 @@
 4. Ask:
    > "Give this analysis a short name to use as a folder name (e.g. `orders-null-customer-id`, `api-latency-spike`, `q1-conversion-drop`)."
 
+   Wait for the user's answer before proceeding. The folder name is required — do not skip this step or invent a name.
+
 5. Check if `context-glue/adhoc/{name}/` already exists.
    - If it exists: ask "An analysis with this name already exists. Resume it, or pick a different name?"
    - If resuming: read `.agent/PROGRESS.md` and `.agent/FINDINGS.md`, summarise where we left off, and continue from there.
 
-6. If starting fresh, create:
+6. **If starting fresh — create the folder and both files NOW, before any investigation begins.**
+
+   Create these two files immediately. Do not wait until the investigation is complete.
 
    `context-glue/adhoc/{name}/.agent/PROGRESS.md`
    ```markdown
@@ -56,15 +60,19 @@
    <!-- Anything unresolved -->
    ```
 
+   Confirm to the user: "Created `context-glue/adhoc/{name}/.agent/` with PROGRESS.md and FINDINGS.md."
+
 7. Work through the investigation. For each step:
    - **Before running a query or command**: state what you are about to check and why.
    - **After getting a result**: state what you found and what it means.
-   - **Update PROGRESS.md** with each step as it happens — include the command or query, the result, and the conclusion.
-   - **Update FINDINGS.md** when a discovery is worth recording.
+   - **Update PROGRESS.md after every step** — include the command or query, the result, and the conclusion. Do this immediately after each step, not at the end.
+   - **Update FINDINGS.md as soon as a discovery is worth recording** — do not batch writes to the end.
 
 8. Follow the investigation protocol in `context-glue/knowledge/investigate.md` for all queries and commands.
 
-9. When the user signals they are done (or the question is answered):
-   - Ensure PROGRESS.md and FINDINGS.md are current.
-   - Write a short summary of what was found and any remaining open questions.
-   - Do not promote findings to shared knowledge — ad-hoc analyses are personal and stay local.
+9. **File creation rule:** All files created during this analysis must go inside `context-glue/adhoc/{name}/`. Never create files anywhere else without explicit user permission.
+
+10. When the user signals they are done (or the question is answered):
+    - Ensure PROGRESS.md and FINDINGS.md are current and reflect the full investigation.
+    - Write a short summary of what was found and any remaining open questions.
+    - Do not promote findings to shared knowledge — ad-hoc analyses are personal and stay local.

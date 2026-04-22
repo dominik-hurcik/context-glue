@@ -83,6 +83,7 @@ Rules:
 - [ ] If mutating: have I asked for explicit confirmation?
 - [ ] If deleting a file or directory: have I listed its contents and flagged any gitignored files that cannot be recovered?
 - [ ] Am I within the investigation query/command limit?
+- [ ] Am I about to create a file? If so — is it inside `context-glue/tickets/` or `context-glue/adhoc/`? If not, stop and ask the user for permission first.
 
 ---
 
@@ -96,6 +97,8 @@ Rules:
 | Git sync (fetch, checkout, pull) | ✅ only if `git.enable_sync: true` in settings.json and user confirms per-repo |
 | Git commits | ❌ unless `git.enable_commits: true` in settings.json |
 | Deleting files or directories | ❌ list contents first, call out any gitignored files, then ask for confirmation |
+| Creating files inside `context-glue/tickets/` or `context-glue/adhoc/` | ✅ freely — designated workspace for all session files |
+| Creating files anywhere else | ❌ must ask for explicit user permission first |
 
 ---
 

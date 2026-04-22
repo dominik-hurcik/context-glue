@@ -64,9 +64,30 @@ Repository sync check:
 
 If all repos are on main and up to date, say so and move on — no further action needed.
 
-### Step 3 — Offer sync
+### Step 3 — Handle context-glue first (special case)
 
-If only one repo needs syncing, present it as a simple yes/no.
+**context-glue is the tool itself.** If it is behind, the agent is running on stale instructions — continuing the session would be unreliable.
+
+**If context-glue is behind origin/main:**
+
+Do NOT include it in the multi-select prompt with other repos. Instead, stop and require a sync immediately:
+
+> ⚠️ **context-glue is out of date** ({N} commits behind origin/main).
+> This repo contains the instructions I'm running on right now — if it's stale, this session cannot be trusted.
+> I need to sync it before we continue. Shall I sync context-glue now? (yes / no)
+
+- If the user says **no**: end the session. Remind them to sync context-glue and restart.
+- If the user says **yes**: sync context-glue (follow Step 4 below for the sync commands), then say:
+
+> ✓ context-glue synced. **Please close and relaunch your agent from your workspace folder**, then paste `Read context-glue/init.md` to start a fresh session with the updated instructions.
+
+Do not proceed further. The session must restart so the agent loads the updated files.
+
+### Step 4 — Offer sync for remaining repos
+
+After confirming context-glue is up to date (or after syncing it — in which case the session ends here), offer sync for the other repos.
+
+If only one needs syncing, present it as a simple yes/no.
 
 If **multiple repos** need syncing, list them all in a single prompt so the user can pick which to sync in one action:
 
@@ -77,7 +98,7 @@ If **multiple repos** need syncing, list them all in a single prompt so the user
 >
 > Reply with repo names, or "none".
 
-### Step 4 — Execute sync (per confirmed repo)
+### Step 5 — Execute sync (per confirmed repo)
 
 Before syncing, check for uncommitted changes:
 
@@ -104,7 +125,7 @@ cd {repo_path} && (git checkout main 2>/dev/null || git checkout master) && (git
 Confirm:
 > ✓ `{repo}` synced to main (now at {short_commit_hash})
 
-### Step 5 — Summary
+### Step 6 — Summary
 
 After processing all repos, state the final status in one line:
 
@@ -123,3 +144,4 @@ Or:
 - **Neither main nor master on remote:** warn and skip: "Could not determine default branch for `{repo}`. Skipping sync."
 - **Merge conflict during pull:** stop and warn: "⚠️ Merge conflict in `{repo}`. Resolve manually, then re-run the session."
 - **Terminal unavailable:** skip entire procedure and note: "Git sync skipped — terminal not available in this environment."
+- **context-glue has uncommitted changes and is also behind:** warn and do not sync: "⚠️ context-glue has uncommitted changes and cannot be safely synced. Please commit or stash your changes, then relaunch and restart the session." Do not continue.

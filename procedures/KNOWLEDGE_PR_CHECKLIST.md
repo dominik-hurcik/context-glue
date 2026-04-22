@@ -22,13 +22,27 @@ Is this finding already captured somewhere in `knowledge/`? Check the `INDEX.md`
 Is this finding in the right room? Cross-check the room's purpose in `INDEX.md`.
 - If it belongs in a different room: say so and move it before writing.
 
-### 4. Size check
+### 4. Stale flag check
+Scan every file you touched for any `⚠️ STALE:` markers. If the current work resolves one, remove the marker and update the content.
+
+### 5. Size check
 After the addition, is the target file still a reasonable size (under ~300 lines)?
 - If not: flag it as a candidate for splitting. Suggest where the content could be moved.
 
-### 5. Last updated
+### 6. Last updated
 Did you update the `## Last updated:` header on every modified file?
 - If not: update it now.
+
+---
+
+## Stale flag convention
+
+Any team member or agent can mark a line or section as outdated by prepending `⚠️ STALE:` inline. This is a signal, not a deletion — the fix belongs in the next relevant PR.
+
+Example:
+```
+⚠️ STALE: The retry backoff was changed from 30s to 60s in TICKET-88 — update the common operations section.
+```
 
 ---
 
@@ -39,6 +53,7 @@ When a knowledge PR arrives, check:
 - [ ] **No contradictions** — new content doesn't conflict with existing content in the same file
 - [ ] **No duplication** — same finding doesn't already exist in another room
 - [ ] **Right room** — the content belongs in the file it was added to (matches the room's purpose in `INDEX.md`)
+- [ ] **Stale flags** — are any `⚠️ STALE:` markers in touched files now resolvable? If so, ask the author to clean them up.
 - [ ] **Reasonable size** — file isn't getting bloated; if so, flag for splitting
 - [ ] **Last updated** — header is current on every modified file
 - [ ] **No credentials or personal data** — `env.local` or any personal info was not accidentally included
