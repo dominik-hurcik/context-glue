@@ -37,7 +37,7 @@ No issue required before opening a PR for small fixes. For larger changes (rewor
 
 **Keep files agent-readable.** Instructions should be unambiguous. If a step could be interpreted two ways by an AI agent, rewrite it until it can't.
 
-**Stay stack-agnostic.** The generic files (`investigate.md`, `AGENT.md`, `START_HERE.md`, the prompt files) should work for any team on any stack. Do not bake in tool-specific conventions. Stack-specific knowledge belongs in the files that `setup.md` generates for each user, not in the shared files.
+**Stay stack-agnostic.** The generic files (`START_HERE.md`, `investigate.md`, the prompt files) should work for any team on any stack. Do not bake in tool-specific conventions. Stack-specific knowledge belongs in the files that `setup.md` generates for each user, not in the shared files.
 
 **One change per PR.** Easier to review, easier to revert if needed.
 
