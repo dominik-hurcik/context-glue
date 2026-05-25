@@ -1,6 +1,6 @@
 ## Ad-hoc analysis - context-glue
 
-1. Read `context-glue/START_HERE.md` - follow the full instruction loading order.
+1. Read `context-glue/START_HERE.md` - follow the full instruction loading order. If START_HERE.md was already loaded this session, skip to step 2.
 
 2. Ask:
    > "What do you need to investigate or explore?"
