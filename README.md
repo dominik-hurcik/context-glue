@@ -3,8 +3,8 @@
 </p>
 
 <p align="center">
-  Context-keeping system for multi-repo teams.<br>
-  One prompt. Full context. Any stack.
+  Persistent context for AI agents, across any stack.<br>
+  One command. Every session.
 </p>
 
 <br>
@@ -13,41 +13,57 @@
 
 ---
 
-## What is it?
+## The problem
 
-**context-glue** is a structured set of files that gives an AI agent persistent, shared context across all of your team's tools and repos - without API integrations, without plugins, without vendor lock-in.
+AI agents start every session knowing nothing. Your stack, your ticket history, your investigation notes, your conventions - all gone. You spend the first part of every session re-explaining context, or the agent makes mistakes because it doesn't know how your systems fit together.
 
-Your team probably works across multiple systems: a ticketing tool, a source repo, an orchestration platform, a database, a data warehouse, a CI/CD pipeline. Each system holds context that matters. When you open a new AI session, all of that is gone. context-glue fixes that.
-
-It works by being a repo that lives alongside your other repos. It holds your stack knowledge, your ticket history, your investigation logs, and your team's accumulated findings - all as plain markdown files, structured so an AI agent can load exactly what it needs for the current task.
-
-**The key insight:** no API connections needed. No JIRA integration, no Snowflake plugin, no GitHub app. The agent reads files, writes files, and runs commands you already have access to. That's it.
-
-- AI agents start every session cold. context-glue makes that irrelevant.
-- Glues together any combination of systems - data engineering, software engineering, platform, DevOps, analytics, marketing ops, and more.
-- Not tied to any specific tool, language, or cloud provider.
-- Knowledge grows over time - each completed ticket feeds back into shared context that every team member benefits from.
-- Zero setup overhead for new systems - describe a tool in a sentence, get a knowledge room for it.
+context-glue fixes this with no API integrations, no plugins, and no vendor lock-in. It is a folder of plain markdown files that sits next to your other repos. The agent reads what it needs at the start of each session and stays in context for the rest.
 
 ---
 
-## First time?
+## Why I built this
 
-1. Clone this repository into the same folder as your other repos:
+In some temas, we can often work across several repos, which was often the case for my personal experience. Maybe a pipeline repo, an orchestration layer, a data warehouse, a handful of extractors. Each one has its own conventions, its own quirks, its own history of decisions.
+
+Opening a new AI agent session could mean: explaining the stack from scratch, re-linking how the systems connect, reminding the agent what we tried last time and why it did not work. Half the time it would still confidently suggest something we had already ruled out two weeks earlier.
+
+I looked at the existing solutions. Most of them require API integrations, maybe some paid plugins, or locking into a specific agent's ecosystem. I did not want any of that. I just wanted the agent to know what I know, every session, without me having to repeat myself and more importantly, structured only for myself and my team.
+
+Context-glue provides exactly that! The idea is simple: keep a structured folder of markdown files next to your repos. The agent reads them at the start of every session. That is the whole thing.
+
+What surprised me was how well it worked. Not just for giving the agent context, but for the team. When you have a place where knowledge is meant to land, where findings from one ticket feed into the next... the team gets smarter over time instead of each person starting from zero.
+
+---
+
+## How it works
+
+You keep a `context-glue` folder next to your other repos. At the start of every AI session, you paste one command. The agent loads your team's knowledge, checks your repos are in sync, and asks what you want to do. No configuration beyond a one-time setup. No integrations to maintain.
+
+**Knowledge compounds over time.** Every ticket you complete feeds findings back into shared knowledge files. The next person who works on a similar problem starts from a richer base than the person before them.
+
+---
+
+## Getting started
+
+1. Clone this repo into the same folder as your other repos:
    ```bash
    git clone https://github.com/{org}/context-glue.git
    ```
-2. From that parent folder, open your AI agent's CLI.
+
+2. Open your AI agent from that parent folder.
+
 3. Run the setup wizard:
    ```
    Read context-glue/prompts/setup.md
    ```
 
-The agent will scan your repos, ask a few questions about your stack, and generate a knowledge base tailored to your team. Takes about 10 minutes.
+The agent will scan your repos, ask about your stack and workflow, and generate a knowledge base tailored to your team. Takes about 10 minutes.
+
+New team members follow the same three steps. The setup wizard walks them through cloning any missing repos and creating their personal credentials file.
 
 ---
 
-## Quick reference
+## Every session
 
 One command starts every session:
 
@@ -55,33 +71,25 @@ One command starts every session:
 Read context-glue/init.md
 ```
 
-The agent will:
-1. Load all context and settings
-2. Check if your repositories are up to date (and offer to sync them)
-3. Ask what you want to do:
+The agent loads all context, checks your repos are in sync, then asks what you want to do:
 
 | Option | What it does |
 |---|---|
-| **Ad-hoc** | Investigate, run queries, track findings |
-| **New ticket** | Start a new task or ticket session |
-| **Resume ticket** | Pick up where you left off |
+| **Ad-hoc** | Investigate, explore, or track findings without a ticket |
+| **New ticket** | Start a tracked session for a task or ticket |
+| **Resume ticket** | Pick up a ticket where you left off |
 | **Complete ticket** | Close a ticket and promote findings to shared knowledge |
+| **Quick question** | Ask something one-off with no tracking or session setup |
 
-**Power users:** jump directly to a specific workflow:
+The agent will never run destructive commands, make git commits, or proceed past open questions without asking you first.
 
-| When | Paste this |
-|---|---|
-| Ad-hoc analysis | `Read context-glue/prompts/adhoc.md` |
-| New ticket | `Read context-glue/prompts/new.md` |
-| Resume ticket | `Read context-glue/prompts/resume.md` |
-| Complete ticket | `Read context-glue/prompts/complete.md` |
-| First-time setup | `Read context-glue/prompts/setup.md` |
+---
 
-**What the AI will never do without asking you first:** run destructive or mutating commands, make git commits, or proceed past a task that has open questions or risks.
+## Shared knowledge
 
-**If something feels wrong:** the agent always states which files it loaded at startup - if it loaded the wrong context, say "reload" and tell it the correct ticket.
+The `knowledge/` folder is your team's shared asset. It is committed to git. When you complete a ticket, the agent reviews everything discovered during the session and asks which findings are worth keeping - then writes them into the right knowledge files so the next person benefits.
 
-**After completing a ticket**, push your knowledge updates:
+After completing a ticket, push the updates:
 
 ```bash
 cd context-glue
@@ -90,11 +98,21 @@ git commit -m "knowledge: {TICKET} findings"
 git push
 ```
 
-Then create a pull request.
+Then open a pull request. The reviewer can run `procedures/KNOWLEDGE_PR_CHECKLIST.md` to check the additions are clean before merging.
+
+**What is shared vs personal:**
+
+| What | Shared (committed) | Personal (gitignored) |
+|---|---|---|
+| `knowledge/` | yes | |
+| `env.template` | yes - shows what variables are needed | |
+| `tickets/` | | yes - local only |
+| `adhoc/` | | yes - local only |
+| `env.local` | | yes - your credentials |
 
 ---
 
-## How it works
+## How it works internally
 
 ### Session init flow
 
@@ -104,36 +122,34 @@ When you paste `Read context-glue/init.md`, the agent follows this chain:
 init.md
   └── START_HERE.md       capability check + loading order + session rules
         ├── settings.json
-        ├── knowledge/INDEX.md              ← palace map
-        ├── knowledge/stack/overview.md     ← always-load
-        └── env.local                       ← always-load (gitignored; your credentials)
-  └── GIT_SYNC.md                          ← only loaded if a repo is behind
+        ├── knowledge/INDEX.md              <- palace map
+        ├── knowledge/stack/overview.md     <- always-load
+        └── env.local                       <- always-load (gitignored; your credentials)
+  └── GIT_SYNC.md                          <- only loaded if a repo is behind
   └── Ask user: ad-hoc / new / resume / complete / quick question
   └── Route to selected prompt
-        └── [ad-hoc]    → adhoc/{name}/.agent/PROGRESS.md + FINDINGS.md
-        └── [ticket]    → tickets/{TICKET}/.agent/CONTEXT.md + CHECKLIST.md + ...
+        └── [ad-hoc]    -> adhoc/{name}/.agent/PROGRESS.md + FINDINGS.md
+        └── [ticket]    -> tickets/{TICKET}/.agent/CONTEXT.md + CHECKLIST.md + ...
 ```
 
-### Knowledge Palace
+### Knowledge palace
 
-The knowledge base uses a **palace structure** - a map of rooms, each tagged for a specific task type. The agent reads the palace map (`INDEX.md`) at every session start, then walks into only the rooms it needs for the current task.
+The knowledge base uses a palace structure - a map of rooms, each tagged for a specific task type. The agent reads the palace map (`INDEX.md`) at every session start, then loads only the rooms it needs for the current task.
 
 Rooms are generated for your specific stack during setup. Examples across different team types:
 
 | Team type | Example rooms |
 |---|---|
-| Data engineering | `[orchestration]` · `[transformation]` · `[warehouse]` · `[extraction]` |
-| Software engineering | `[backend]` · `[frontend]` · `[infra]` · `[api]` |
-| Platform / DevOps | `[ci-cd]` · `[infra]` · `[monitoring]` · `[services]` |
-| Analytics / BI | `[data-sources]` · `[reporting]` · `[warehouse]` · `[pipelines]` |
+| Data engineering | `[orchestration]` `[transformation]` `[warehouse]` `[extraction]` |
+| Software engineering | `[backend]` `[frontend]` `[infra]` `[api]` |
+| Platform / DevOps | `[ci-cd]` `[infra]` `[monitoring]` `[services]` |
+| Analytics / BI | `[data-sources]` `[reporting]` `[warehouse]` `[pipelines]` |
 
 Every team also gets `[investigate]` and `[architecture]` rooms automatically.
 
-The more your team uses context-glue, the richer these rooms become.
-
 ### Repository sync
 
-At the start of every session, the agent checks all workspace repositories (configured during setup). If any repo is behind `origin/main` or on a different branch, the agent will tell you and offer to sync - one repo at a time, so you stay in control.
+At the start of every session the agent runs a quick check on all configured repos. If any repo is behind its default branch, the agent tells you and offers to sync. All up to date - it moves on without loading the full sync procedure.
 
 Controlled by `git.enable_sync` in `settings.json`.
 
@@ -151,8 +167,8 @@ context-glue/
 ├── START_HERE.md                 capability check, loading order, session rules, permissions
 │
 ├── procedures/                   reusable agent procedures
-│   ├── GIT_SYNC.md              repository sync check
-│   └── KNOWLEDGE_PR_CHECKLIST.md  knowledge PR review checklist
+│   ├── GIT_SYNC.md               repository sync procedure (loaded only when needed)
+│   └── KNOWLEDGE_PR_CHECKLIST.md knowledge PR review checklist
 │
 ├── knowledge/                    shared team knowledge - committed to git
 │   ├── INDEX.md                  palace map - always-load rooms + tagged rooms
@@ -191,101 +207,6 @@ context-glue/
 context-glue uses a single `START_HERE.md` that works with any AI agent. At session start, the agent runs a capability self-check and tells you upfront what works in its environment (file access, terminal, credentials). No agent-specific configuration needed.
 
 Works with: Claude, GPT/Codex, Gemini, Copilot, Cursor, and any other agent that can read files and follow instructions.
-
----
-
-## Team onboarding
-
-### For new team members - let the AI walk you through it
-
-After cloning the repo, paste this into your AI agent:
-
-```
-Read context-glue/prompts/setup.md
-```
-
-The agent will:
-- Check if git is installed (and help install it if not)
-- Help you clone any missing sibling repos
-- Create your personal `env.local` from `env.template`
-- Explain the git sync feature
-
-Takes about 10 minutes.
-
----
-
-### Manual setup
-
-#### 1. Clone all repos into the same folder
-
-```bash
-mkdir workspace && cd workspace
-git clone https://github.com/{org}/context-glue.git
-git clone https://github.com/{org}/{your-repo}.git
-# ... repeat for all repos
-```
-
-#### 2. Create your credentials file
-
-```bash
-cp context-glue/env.template context-glue/env.local
-```
-
-Open `env.local` and fill in your values. This file is gitignored and will never be committed.
-
-#### 3. Start working
-
-```
-Read context-glue/init.md
-```
-
----
-
-## Team workflow - shared knowledge
-
-The `knowledge/` folder is the team's shared asset. It is committed to git and everyone benefits when it is updated.
-
-**Before starting any session:**
-
-The git sync feature handles this automatically at session start. Or manually:
-
-```bash
-cd context-glue && git pull
-```
-
-**After completing a ticket:**
-
-When you run the "Complete ticket" workflow, the agent promotes findings to shared knowledge files and then reminds you to push:
-
-```bash
-cd context-glue
-git add knowledge/
-git commit -m "knowledge: {TICKET} findings"
-git push
-```
-
-Then create a pull request.
-
-**Reviewing a knowledge PR:**
-
-When a knowledge PR arrives, the reviewer should run through `procedures/KNOWLEDGE_PR_CHECKLIST.md` before approving. It covers four things:
-
-- Does the new content contradict anything already in the target file?
-- Is there duplication with another room?
-- Is the finding scoped to the right room?
-- Is the file still a reasonable size after the addition?
-
-The agent runs the same checklist automatically during the "Complete ticket" workflow before telling you to push - so by the time the PR lands, the obvious issues should already be caught.
-
-**What is shared vs personal:**
-
-| What | Shared (committed) | Personal (gitignored) |
-|---|---|---|
-| `knowledge/` | yes | |
-| `env.template` | yes - shows what's needed | |
-| `tickets/` | | yes - local only |
-| `adhoc/` | | yes - local only |
-| `env.local` | | yes - your credentials |
 
 ---
 
