@@ -103,7 +103,7 @@ When you paste `Read context-glue/init.md`, the agent follows this chain:
 ```
 init.md
   └── START_HERE.md
-        ├── agent/CLAUDE.md  (or CODEX.md / GENERIC.md)
+        ├── agent/AGENT.md
         ├── settings.json
         ├── knowledge/INDEX.md              ← palace map
         ├── knowledge/stack/overview.md     ← always-load

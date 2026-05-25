@@ -30,7 +30,6 @@
   },
 
   "agent": {
-    "default_identity": "CLAUDE",
     "verbose_context_loading": false
   }
 }
