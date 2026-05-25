@@ -1,5 +1,5 @@
-## Last updated: —
-# Knowledge Palace — Index
+## Last updated: (not set)
+# Knowledge Palace - Index
 
 > **Not configured yet.** Run `Read context-glue/prompts/setup.md` to generate this file for your stack.
 

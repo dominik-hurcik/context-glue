@@ -1,4 +1,4 @@
-# KNOWLEDGE_PR_CHECKLIST.md — Knowledge PR Review
+# KNOWLEDGE_PR_CHECKLIST.md - Knowledge PR Review
 
 Use this checklist when reviewing a pull request that modifies files in `knowledge/`.
 
@@ -6,13 +6,13 @@ Both the agent (during "Complete ticket") and human reviewers should run through
 
 ---
 
-## For the agent — run before telling the user to push
+## For the agent - run before telling the user to push
 
 For every knowledge file modified in this session, check each of the following. Report any flags before instructing the user to push.
 
 ### 1. Contradiction check
 Read the target file in full. Does the new content contradict any existing statements?
-- If yes: flag it. Do not write conflicting information — either reconcile the contradiction or ask the user which version is correct.
+- If yes: flag it. Do not write conflicting information - either reconcile the contradiction or ask the user which version is correct.
 
 ### 2. Duplication check
 Is this finding already captured somewhere in `knowledge/`? Check the `INDEX.md` room descriptions.
@@ -37,26 +37,26 @@ Did you update the `## Last updated:` header on every modified file?
 
 ## Stale flag convention
 
-Any team member or agent can mark a line or section as outdated by prepending `⚠️ STALE:` inline. This is a signal, not a deletion — the fix belongs in the next relevant PR.
+Any team member or agent can mark a line or section as outdated by prepending `⚠️ STALE:` inline. This is a signal, not a deletion - the fix belongs in the next relevant PR.
 
 Example:
 ```
-⚠️ STALE: The retry backoff was changed from 30s to 60s in TICKET-88 — update the common operations section.
+⚠️ STALE: The retry backoff was changed from 30s to 60s in TICKET-88 - update the common operations section.
 ```
 
 ---
 
-## For human reviewers — run before approving the PR
+## For human reviewers - run before approving the PR
 
 When a knowledge PR arrives, check:
 
-- [ ] **No contradictions** — new content doesn't conflict with existing content in the same file
-- [ ] **No duplication** — same finding doesn't already exist in another room
-- [ ] **Right room** — the content belongs in the file it was added to (matches the room's purpose in `INDEX.md`)
-- [ ] **Stale flags** — are any `⚠️ STALE:` markers in touched files now resolvable? If so, ask the author to clean them up.
-- [ ] **Reasonable size** — file isn't getting bloated; if so, flag for splitting
-- [ ] **Last updated** — header is current on every modified file
-- [ ] **No credentials or personal data** — `env.local` or any personal info was not accidentally included
+- [ ] **No contradictions** - new content doesn't conflict with existing content in the same file
+- [ ] **No duplication** - same finding doesn't already exist in another room
+- [ ] **Right room** - the content belongs in the file it was added to (matches the room's purpose in `INDEX.md`)
+- [ ] **Stale flags** - are any `⚠️ STALE:` markers in touched files now resolvable? If so, ask the author to clean them up.
+- [ ] **Reasonable size** - file isn't getting bloated; if so, flag for splitting
+- [ ] **Last updated** - header is current on every modified file
+- [ ] **No credentials or personal data** - `env.local` or any personal info was not accidentally included
 
 If all checks pass, approve. If any fail, request changes with a note on what to fix.
 

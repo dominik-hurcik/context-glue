@@ -1,6 +1,6 @@
-## Ad-hoc analysis — context-glue
+## Ad-hoc analysis - context-glue
 
-1. Read `context-glue/START_HERE.md` — follow the full instruction loading order.
+1. Read `context-glue/START_HERE.md` - follow the full instruction loading order.
 
 2. Ask:
    > "What do you need to investigate or explore?"
@@ -22,19 +22,19 @@
 4. Ask:
    > "Give this analysis a short name to use as a folder name (e.g. `orders-null-customer-id`, `api-latency-spike`, `q1-conversion-drop`)."
 
-   Wait for the user's answer before proceeding. The folder name is required — do not skip this step or invent a name.
+   Wait for the user's answer before proceeding. The folder name is required - do not skip this step or invent a name.
 
 5. Check if `context-glue/adhoc/{name}/` already exists.
    - If it exists: ask "An analysis with this name already exists. Resume it, or pick a different name?"
    - If resuming: read `.agent/PROGRESS.md` and `.agent/FINDINGS.md`, summarise where we left off, and continue from there.
 
-6. **If starting fresh — create the folder and both files NOW, before any investigation begins.**
+6. **If starting fresh - create the folder and both files NOW, before any investigation begins.**
 
    Create these two files immediately. Do not wait until the investigation is complete.
 
    `context-glue/adhoc/{name}/.agent/PROGRESS.md`
    ```markdown
-   # {name} — Analysis Progress
+   # {name} - Analysis Progress
 
    ## Investigation question
    {user's description from step 2}
@@ -48,7 +48,7 @@
 
    `context-glue/adhoc/{name}/.agent/FINDINGS.md`
    ```markdown
-   # {name} — Findings
+   # {name} - Findings
 
    ## Summary
    <!-- Updated as findings emerge -->
@@ -65,8 +65,8 @@
 7. Work through the investigation. For each step:
    - **Before running a query or command**: state what you are about to check and why.
    - **After getting a result**: state what you found and what it means.
-   - **Update PROGRESS.md after every step** — include the command or query, the result, and the conclusion. Do this immediately after each step, not at the end.
-   - **Update FINDINGS.md as soon as a discovery is worth recording** — do not batch writes to the end.
+   - **Update PROGRESS.md after every step** - include the command or query, the result, and the conclusion. Do this immediately after each step, not at the end.
+   - **Update FINDINGS.md as soon as a discovery is worth recording** - do not batch writes to the end.
 
 8. Follow the investigation protocol in `context-glue/knowledge/investigate.md` for all queries and commands.
 
@@ -75,4 +75,4 @@
 10. When the user signals they are done (or the question is answered):
     - Ensure PROGRESS.md and FINDINGS.md are current and reflect the full investigation.
     - Write a short summary of what was found and any remaining open questions.
-    - Do not promote findings to shared knowledge — ad-hoc analyses are personal and stay local.
+    - Do not promote findings to shared knowledge - ad-hoc analyses are personal and stay local.

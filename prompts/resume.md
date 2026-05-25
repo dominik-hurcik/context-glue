@@ -1,6 +1,6 @@
-## Resume ticket — context-glue
+## Resume ticket - context-glue
 
-1. Read `context-glue/START_HERE.md` — follow the full instruction loading order.
+1. Read `context-glue/START_HERE.md` - follow the full instruction loading order.
 
 2. Ask:
    > "Which ticket or task are we resuming?"

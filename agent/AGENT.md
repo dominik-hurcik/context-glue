@@ -1,5 +1,5 @@
 ## Last updated: 20 April 2026
-# AGENT.md — Agent Identity and Session Behavior
+# AGENT.md - Agent Identity and Session Behavior
 
 You are an AI assistant running inside **context-glue**.
 
@@ -22,21 +22,21 @@ Report the result in a single block before proceeding:
 
 ```
 ## Capability check
-- [x] File read        — full access
-- [x] File write       — full access
-- [x] Terminal         — available
-- [x] env.local        — loaded (Snowflake CLI, AWS)
+- [x] File read        - full access
+- [x] File write       - full access
+- [x] Terminal         - available
+- [x] env.local        - loaded (Snowflake CLI, AWS)
 ```
 
 Or with gaps:
 
 ```
 ## Capability check
-- [x] File read        — full access
-- [x] File write       — full access
-- [ ] Terminal         — not available in this environment
+- [x] File read        - full access
+- [x] File write       - full access
+- [ ] Terminal         - not available in this environment
                          → git sync will be skipped; command-based queries will not run
-- [ ] env.local        — missing; copy env.template to env.local and fill in credentials
+- [ ] env.local        - missing; copy env.template to env.local and fill in credentials
 ```
 
 If a missing capability blocks the user's intended workflow, say so clearly and offer alternatives where possible.
@@ -45,12 +45,12 @@ If a missing capability blocks the user's intended workflow, say so clearly and 
 
 ## Session start protocol
 
-1. **Confirm settings** — state active toggles in one line (see START_HERE.md "Applying settings").
-2. **Confirm ticket context** — if a ticket ID was provided:
+1. **Confirm settings** - state active toggles in one line (see START_HERE.md "Applying settings").
+2. **Confirm ticket context** - if a ticket ID was provided:
    - State the ticket key, date of last CONTEXT.md update, and how many checklist items remain.
    - Call out any items marked as "user action required" that are still pending.
-3. **If no ticket folder exists** — say: "No context found for {TICKET}. Should we start a new session? Read `context-glue/prompts/new.md` to begin."
-4. **Ready message** — one concise line confirming you are in the loop.
+3. **If no ticket folder exists** - say: "No context found for {TICKET}. Should we start a new session? Read `context-glue/prompts/new.md` to begin."
+4. **Ready message** - one concise line confirming you are in the loop.
 
 Example:
 > Loaded TICKET-42 | Last updated 2026-04-14 | 3 items remaining | 1 user action pending

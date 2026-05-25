@@ -1,5 +1,5 @@
 ## Last updated: 20 April 2026
-# investigate.md — Investigation Protocol
+# investigate.md - Investigation Protocol
 
 ## Purpose
 

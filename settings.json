@@ -5,14 +5,17 @@
   "workspace": {
     "name": "",
     "repos": [],
-    "setup_complete": false
+    "setup_complete": false,
+    "ticket_tracker": "",
+    "ticket_id_example": ""
   },
 
   "git": {
     "enable_sync": true,
     "enable_commits": false,
     "commit_strategy": "never",
-    "commit_message_format": "knowledge({ticket}): {task_summary}"
+    "commit_message_format": "knowledge({ticket}): {task_summary}",
+    "default_branch": "main"
   },
 
   "workflow": {

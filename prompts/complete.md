@@ -1,6 +1,6 @@
-## Complete ticket — context-glue
+## Complete ticket - context-glue
 
-1. Read `context-glue/START_HERE.md` — follow the full instruction loading order.
+1. Read `context-glue/START_HERE.md` - follow the full instruction loading order.
 
 2. Ask:
    > "Which ticket are we completing?"
@@ -11,14 +11,14 @@
    - `context-glue/tickets/{TICKET}/.agent/TESTING.md`
    - `context-glue/tickets/{TICKET}/.agent/PROMOTE_CANDIDATES.md`
 
-   (PULLREQUEST.md is kept current during the session but contains no promotable findings — skip it here.)
+   (PULLREQUEST.md is kept current during the session but contains no promotable findings - skip it here.)
 
 4. If any checklist items are still open, stop and flag them:
    > "{N} checklist items are still open. Complete them before closing, or confirm they are intentionally deferred."
 
    Do not proceed until the user confirms.
 
-5. Read `PROMOTE_CANDIDATES.md`. This is the primary list of findings to promote — the agent built it in real time during the session. Present each candidate to the user for confirmation before writing:
+5. Read `PROMOTE_CANDIDATES.md`. This is the primary list of findings to promote - the agent built it in real time during the session. Present each candidate to the user for confirmation before writing:
 
    ```
    PROMOTE → context-glue/knowledge/stack/{system}.md
@@ -48,7 +48,7 @@
 
 8. After all findings reviewed, write approved additions. Update `## Last updated:` on every modified file.
 
-9. Run `context-glue/procedures/KNOWLEDGE_PR_CHECKLIST.md` — the "For the agent" section — against every file you modified. Report any flags (contradictions, duplication, wrong room, stale markers, size concern) before telling the user to push.
+9. Run `context-glue/procedures/KNOWLEDGE_PR_CHECKLIST.md` - the "For the agent" section - against every file you modified. Report any flags (contradictions, duplication, wrong room, stale markers, size concern) before telling the user to push.
 
 10. Update `## Last updated:` in `context-glue/knowledge/INDEX.md` if any knowledge files changed.
 

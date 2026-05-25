@@ -1,7 +1,7 @@
-## Last updated: —
+## Last updated: (not set)
 # Architecture Map
 
-> **Template — fill this in as you work.** This file grows over time as the team discovers cross-system contracts, failure modes, and integration details. The agent adds to it when `[architecture]` rooms are loaded and cross-system findings are promoted from completed tickets.
+> **Template - fill this in as you work.** This file grows over time as the team discovers cross-system contracts, failure modes, and integration details. The agent adds to it when `[architecture]` rooms are loaded and cross-system findings are promoted from completed tickets.
 
 This document maps the cross-system dependencies in your workspace.
 
@@ -43,7 +43,7 @@ This document maps the cross-system dependencies in your workspace.
 
 ## Contract map
 
-*Capture explicit and implicit contracts between components — things that break if either side changes without coordination.*
+*Capture explicit and implicit contracts between components - things that break if either side changes without coordination.*
 
 | Producer | Consumer | Contract type | Artifact | Status | Risk if changed |
 |---|---|---|---|---|---|

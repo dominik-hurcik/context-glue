@@ -1,6 +1,6 @@
-# context-glue — Session Init
+# context-glue - Session Init
 
-1. Read `context-glue/START_HERE.md` — follow the full instruction loading order before continuing.
+1. Read `context-glue/START_HERE.md` - follow the full instruction loading order before continuing.
 
 2. Check `context-glue/settings.json` for `workspace.setup_complete`.
    - If `false` or the field is missing, stop immediately and say:
@@ -12,7 +12,7 @@
 
    Present the sync status and handle per-repo sync as described in the procedure.
 
-4. Once the loading order and sync check are complete, output this exact welcome screen in a single message. Fill in the repo sync status lines with actual results from step 3 (e.g. `up to date`, `synced`, `skipped (user choice)`, `not found`). Then present the menu immediately below — no extra text between the banner and the menu:
+4. Once the loading order and sync check are complete, output this exact welcome screen in a single message. Fill in the repo sync status lines with actual results from step 3 (e.g. `up to date`, `synced`, `skipped (user choice)`, `not found`). Then present the menu immediately below - no extra text between the banner and the menu:
 
 ```
 ------------------------------------------------------------
@@ -22,7 +22,7 @@
       \___\___/|_| |_|\__\___/_/\_\   |_|\___/|_|\__,_|\___|
 
       ________________________________________________________________
-       context-glue — One prompt. Full context. Any stack.
+       context-glue - One prompt. Full context. Any stack.
       ________________________________________________________________
 
        -- Sync complete --
@@ -37,10 +37,10 @@
 
   What are we doing today?
 
-  1. Ad-hoc — investigate, explore, track findings
-  2. New ticket — start a new task or ticket session
-  3. Resume ticket — pick up where we left off
-  4. Complete ticket — close out a ticket and promote findings
+  1. Ad-hoc - investigate, explore, track findings
+  2. New ticket - start a new task or ticket session
+  3. Resume ticket - pick up where we left off
+  4. Complete ticket - close out a ticket and promote findings
 ```
 
 5. Based on the user's choice, read the matching prompt file and follow it:
