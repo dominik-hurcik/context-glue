@@ -64,7 +64,24 @@ Flag anything non-default. Update the rooms declaration as additional rooms are 
 
 ## Load Receipt
 
-After completing the instruction loading order, produce this block - one row per file, plus any task-specific rooms loaded. Use `[x]` for loaded and `[ ]` for skipped, with a reason for every skip.
+After completing the instruction loading order, produce a receipt. The format depends on `agent.verbose_context_loading` in settings.json.
+
+### Default (verbose_context_loading: false)
+
+Output a single summary line:
+
+> Loaded: START_HERE, settings, INDEX, overview, env.local | Rooms: overview, [system-a] | git sync: on | commits: off
+
+Rules for the summary line:
+- List files in the order they were loaded, using short names (no paths)
+- List all rooms loaded under "Rooms:"
+- Include the two most relevant settings toggles (git sync and commits)
+- If `env.local` is missing, append: `| env.local: MISSING - copy env.template to env.local`
+- If any capability is missing, append: `| WARNING: {capability} unavailable`
+
+### Verbose (verbose_context_loading: true)
+
+Output the full fenced block - one row per file in the loading order, plus any task-specific rooms loaded. Use `[x]` for loaded and `[ ]` for skipped, with a reason for every skip.
 
 ```
 ## Load Receipt
@@ -77,12 +94,13 @@ After completing the instruction loading order, produce this block - one row per
 - [ ] knowledge/ARCHITECTURE_MAP.md  (not loaded - no cross-system task)
 ```
 
-Rules:
+Rules for the full block:
 - Every file in the loading order must appear - no silent omissions.
 - Task-specific rooms appear only if they were loaded; omit them from the receipt if not loaded.
 - If `env.local` is missing, mark it as missing and tell the user.
 - Produce the receipt as a fenced code block so it is easy to scan.
-- This is a hard requirement. A narrative sentence does not satisfy it.
+
+Both formats satisfy the receipt requirement. A plain narrative sentence satisfies neither.
 
 ---
 

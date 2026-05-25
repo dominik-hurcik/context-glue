@@ -310,7 +310,7 @@ Controls agent behavior. Edit once - applies every session.
 | `workflow.summarize_on_session_end` | `true` | Agent writes a handoff summary when you say you are done |
 | `investigation.max_actions_per_session` | `50` | Hard cap on queries, commands, or API calls per investigation |
 | `investigation.always_cap_results` | `true` | Agent always adds a result cap (SQL LIMIT, API page size, log line count, etc.) unless told otherwise |
-| `agent.verbose_context_loading` | `false` | `true` = agent narrates each file it reads on startup |
+| `agent.verbose_context_loading` | `false` | `false` = single summary line at startup; `true` = full fenced load receipt with one row per file |
 
 ---
 
