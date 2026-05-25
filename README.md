@@ -37,7 +37,13 @@ What surprised me was how well it worked. Not just for giving the agent context,
 
 ## How it works
 
-You keep a `context-glue` folder next to your other repos. At the start of every AI session, you paste one command. The agent loads your team's knowledge, checks your repos are in sync, and asks what you want to do. No configuration beyond a one-time setup. No integrations to maintain.
+You keep a `context-glue` folder next to your other repos. At the start of every AI session, you paste one command into your AI agent's chat or CLI:
+
+```
+Read context-glue/init.md
+```
+
+That is the only trigger. The agent reads the file, loads your team's knowledge, checks your repos are in sync, and asks what you want to do. No configuration beyond a one-time setup. No integrations to maintain.
 
 **Knowledge compounds over time.** Every ticket you complete feeds findings back into shared knowledge files. The next person who works on a similar problem starts from a richer base than the person before them.
 
