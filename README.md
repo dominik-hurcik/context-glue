@@ -309,8 +309,8 @@ Controls agent behavior. Edit once — applies every session.
 | `workflow.auto_update_context` | `true` | Agent appends decisions to CONTEXT.md as it works |
 | `workflow.auto_update_pullrequest` | `true` | Agent keeps PULLREQUEST.md current |
 | `workflow.summarize_on_session_end` | `true` | Agent writes a handoff summary when you say you are done |
-| `investigation.max_queries_per_session` | `50` | Hard cap on queries or commands per investigation |
-| `investigation.always_require_limit` | `true` | Agent always adds a result limit unless told otherwise |
+| `investigation.max_actions_per_session` | `50` | Hard cap on queries, commands, or API calls per investigation |
+| `investigation.always_cap_results` | `true` | Agent always adds a result cap (SQL LIMIT, API page size, log line count, etc.) unless told otherwise |
 | `agent.verbose_context_loading` | `false` | `true` = agent narrates each file it reads on startup |
 
 ---

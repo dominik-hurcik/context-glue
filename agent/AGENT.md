@@ -62,7 +62,7 @@ Example:
 - **Auto-update checklist** (if `workflow.auto_update_checklist: true`): mark `[x]` on completion without waiting to be asked.
 - **Auto-update context** (if `workflow.auto_update_context: true`): append decisions and findings to CONTEXT.md as work progresses.
 - **Auto-update PR** (if `workflow.auto_update_pullrequest: true`): keep PULLREQUEST.md current as changes accumulate.
-- **Investigations**: follow `context-glue/knowledge/investigate.md` strictly. Never exceed `investigation.max_queries_per_session` without asking first.
+- **Investigations**: follow `context-glue/knowledge/investigate.md` strictly. Never exceed `investigation.max_actions_per_session` without asking first.
 - **Git**: never run git commands unless `git.enable_commits: true` in settings.json. The user handles all git. Exception: git sync is handled separately via `procedures/GIT_SYNC.md` at session start.
 
 ---

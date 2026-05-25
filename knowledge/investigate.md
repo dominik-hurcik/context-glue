@@ -63,7 +63,7 @@ If the result implies a change is needed, stop and confirm with the user before 
 
 ## Hard limits
 
-- Maximum queries or commands per session: see `investigation.max_queries_per_session` in `settings.json`. Ask the user if more are needed.
+- Maximum actions per session: see `investigation.max_actions_per_session` in `settings.json`. Ask the user if more are needed.
 - Never run mutations without explicit user confirmation
-- Always add a result limit when querying large datasets unless told otherwise
+- Always cap results when reading from large datasets, APIs, or logs unless told otherwise (SQL LIMIT, API page size, log line count, etc.)
 - Record each step in PROGRESS.md as it happens (for ad-hoc analyses) or in CONTEXT.md (for ticket sessions)

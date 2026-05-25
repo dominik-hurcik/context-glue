@@ -24,9 +24,9 @@
   },
 
   "investigation": {
-    "max_queries_per_session": 50,
-    "always_require_limit": true,
-    "default_limit": 100
+    "max_actions_per_session": 50,
+    "always_cap_results": true,
+    "default_result_cap": 100
   },
 
   "agent": {
