@@ -47,7 +47,7 @@ You keep a `context-glue` folder next to your other repos. At the start of every
 
 1. Clone this repo into the same folder as your other repos:
    ```bash
-   git clone https://github.com/{org}/context-glue.git
+   git clone https://github.com/dominik-hurcik/context-glue.git
    ```
 
 2. Open your AI agent from that parent folder.
