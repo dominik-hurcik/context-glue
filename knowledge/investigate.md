@@ -39,7 +39,7 @@ Examples:
 Write and review before executing. Check:
 - Read-only — no mutations
 - Scoped to the minimum needed
-- If SQL: has a LIMIT clause and is fully lowercase
+- If SQL: has a LIMIT clause
 - If an API call: uses a read-only endpoint
 - If a CLI command: is non-destructive
 
